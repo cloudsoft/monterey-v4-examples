@@ -18,6 +18,7 @@
 
     <properties>
         <monterey.version>4.0.0-SNAPSHOT</monterey.version>
+        <skipTests>true</skipTests>
     </properties>
 
 	<dependencies>
