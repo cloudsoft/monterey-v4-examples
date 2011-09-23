@@ -1,34 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>monterey</groupId>
-	<artifactId>monterey-example</artifactId>
+	<groupId>brooklyn-integration</groupId>
+	<artifactId>monterey-actors</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Monterey Examples</name>
+	<name>Monterey Actor Examples</name>
 
 	<description>
 	    Sample code and examples of Monterey actors and applications
 	</description>
 
+    <properties>
+        <monterey.version>4.0.0-SNAPSHOT</monterey.version>
+    </properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>monterey</groupId>
+			<artifactId>monterey-actor-api</artifactId>
+			<version>${monterey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>monterey</groupId>
 			<artifactId>monterey-venue</artifactId>
-			<version>4.0.0-SNAPSHOT</version>
+			<version>${monterey.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<fork>true</fork>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
