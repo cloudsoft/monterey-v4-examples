@@ -47,8 +47,6 @@ public class ActorProdder implements MessageListener {
             MessageProducer producer = producerSession.createProducer(dest);
             Message m = producerSession.createObjectMessage(data);
             m.setStringProperty(admin.getJmsSenderIdProperty(), "test-id");
-            m.setStringProperty(admin.getJmsSenderDisplayNameProperty(), "test");
-            m.setStringProperty(admin.getJmsSenderTypeProperty(), ActorProdder.class.getName());
             producer.send(m);
             producer.close();
         } catch (JMSException e) {
@@ -62,8 +60,6 @@ public class ActorProdder implements MessageListener {
             MessageProducer producer = producerSession.createProducer(dest);
             Message m = producerSession.createObjectMessage(data);
             m.setStringProperty(admin.getJmsSenderIdProperty(), "test-id");
-            m.setStringProperty(admin.getJmsSenderDisplayNameProperty(), "test");
-            m.setStringProperty(admin.getJmsSenderTypeProperty(), ActorProdder.class.getName());
             producer.send(m);
             producer.close();
         } catch (JMSException e) {
