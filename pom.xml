@@ -10,11 +10,11 @@
 	    Sample code and examples of Monterey actors and applications
 	</description>
 
-    <parent>
-        <groupId>brooklyn-integration</groupId>
-        <artifactId>brooklyn-integration</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+        <parent>
+          <groupId>brooklyn-integration</groupId>
+          <artifactId>brooklyn-integration</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+        </parent>
 
     <properties>
         <monterey.version>4.0.0-SNAPSHOT</monterey.version>
@@ -33,5 +33,17 @@
 			<version>${monterey.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+                  <groupId>monterey</groupId>
+                  <version>${monterey.version}</version>
+                  <artifactId>monterey-venue-activemq</artifactId>
+                  <scope>test</scope>
+		</dependency>
+                <dependency>
+                  <groupId>brooklyn-integration</groupId>
+                  <artifactId>brooklyn-integration-test-support</artifactId>
+                  <version>${project.version}</version>
+                  <scope>test</scope>
+                </dependency>
 	</dependencies>
 </project>
