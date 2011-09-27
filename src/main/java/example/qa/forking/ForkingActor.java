@@ -80,7 +80,7 @@ public class ForkingActor implements Actor, Suspendable, Terminable {
     		
             for (int i = 0; i < children.size(); i++) {
             	ForkingJob childJob = children.get(i);
-            	String childName = context.getSelf().getDisplayName()+"-forker-"+i;
+            	String childName = context.getSelf().getId()+"-forker"+i;
             	LOG.info("Spawning "+childName+" for "+childJob);
             	
             	Map<String, String> childConfig = new ImmutableMap.Builder<String,String>()
@@ -96,7 +96,7 @@ public class ForkingActor implements Actor, Suspendable, Terminable {
     		
             for (int i = 0; i < children.size(); i++) {
             	ForkingJob childJob = children.get(i);
-            	String childName = context.getSelf().getDisplayName()+"-worker-"+i;
+            	String childName = context.getSelf().getId()+"-worker"+i;
             	LOG.info("Spawning "+childName+" for "+childJob);
             	
             	Map<String, String> childConfig = new ImmutableMap.Builder<String,String>()

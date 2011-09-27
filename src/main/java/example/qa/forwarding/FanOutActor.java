@@ -43,7 +43,7 @@ public class FanOutActor implements Actor, Suspendable, Terminable {
     	try {
     		if (payload instanceof Integer) {
     			ActorRef source = messageContext.getSource();
-    			String topic = messageContext.getDestination();
+    			String topic = messageContext.getTopic();
     			
     			if (topic == null) {
     				messageSequenceTracker.onReceivedDirectly(source, (Integer) payload);
