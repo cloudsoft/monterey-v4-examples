@@ -33,5 +33,10 @@
 			<version>${monterey.version}</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>monterey</groupId>
+            <artifactId>monterey-venue-jms</artifactId>
+			<version>${monterey.version}</version>
+        </dependency>
 	</dependencies>
 </project>
