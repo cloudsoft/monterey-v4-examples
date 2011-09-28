@@ -39,11 +39,17 @@
                   <artifactId>monterey-venue-activemq</artifactId>
                   <scope>test</scope>
 		</dependency>
-                <dependency>
+        <dependency>
                   <groupId>brooklyn-integration</groupId>
                   <artifactId>brooklyn-integration-test-support</artifactId>
                   <version>${project.version}</version>
                   <scope>test</scope>
-                </dependency>
+        </dependency>
+		<dependency>
+	           <groupId>monterey</groupId>
+	           <version>${monterey.version}</version>
+	           <artifactId>monterey-test-support</artifactId>
+	           <scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
