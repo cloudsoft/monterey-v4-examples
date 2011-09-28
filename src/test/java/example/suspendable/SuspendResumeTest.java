@@ -43,6 +43,7 @@ public class SuspendResumeTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
+        prodder.close();
         if (venue != null) venue.shutdown();
         if (activeMqBroker != null) activeMqBroker.stop();
     }
