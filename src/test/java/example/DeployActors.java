@@ -19,7 +19,7 @@ public class DeployActors {
 
     public static void main(String...argv) throws Exception {
 	    connect();
-	    name = new ObjectName("monterey:type=Venue");
+	    name = new ObjectName("monterey:type=Venue,id=*");
         Set<ObjectInstance> beans = mbsc.queryMBeans(name, null);
         
         createActor("pong", "example.pingpong.PongActor");
