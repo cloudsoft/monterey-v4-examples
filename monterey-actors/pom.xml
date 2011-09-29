@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>monterey-v4-examples</groupId>
 	<artifactId>monterey-actors</artifactId>
+	<version>4.0.0-RC1</version>
 	<name>Monterey Actor Examples</name>
 
 	<description>
 	    Sample code and examples of Monterey actors and applications
 	</description>
-
-        <parent>
-          <groupId>brooklyn-integration</groupId>
-          <artifactId>brooklyn-integration</artifactId>
-          <version>0.1.0-SNAPSHOT</version>
-        </parent>
 
     <properties>
         <monterey.version>4.0.0-SNAPSHOT</monterey.version>
@@ -36,32 +32,23 @@
 			<version>${monterey.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-		</dependency>
-	<dependency>
-                  <groupId>monterey</groupId>
-                  <version>${monterey.version}</version>
-                  <artifactId>monterey-venue-activemq</artifactId>
-                  <scope>test</scope>
-		</dependency>
         <dependency>
-                  <groupId>brooklyn-integration</groupId>
-                  <artifactId>brooklyn-integration-test-support</artifactId>
-                  <version>${project.version}</version>
-                  <scope>test</scope>
-        </dependency>
+            <groupId>monterey</groupId>
+            <version>${monterey.version}</version>
+            <artifactId>monterey-venue-activemq</artifactId>
+            <scope>test</scope>
+		</dependency>
 		<dependency>
-	           <groupId>monterey</groupId>
-	           <version>${monterey.version}</version>
-	           <artifactId>monterey-test-support</artifactId>
-	           <scope>test</scope>
+            <groupId>monterey</groupId>
+            <version>${monterey.version}</version>
+            <artifactId>monterey-test-support</artifactId>
+            <scope>test</scope>
 		</dependency>
         <dependency>
             <groupId>monterey</groupId>
             <artifactId>monterey-venue-jms</artifactId>
-			<version>${monterey.version}</version>
+            <version>${monterey.version}</version>
         </dependency>
-	</dependencies>
+    </dependencies>
+    
 </project>
