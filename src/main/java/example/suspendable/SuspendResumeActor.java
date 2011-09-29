@@ -32,7 +32,7 @@ public class SuspendResumeActor implements Actor, Suspendable {
     public void onMessage(Object payload, MessageContext messageContext) {
         count++;
         
-        // Publish the latest count (primarily for purpose of testing this actor)
+        // Publish the latest count (primarily for the purpose of testing this actor).
         context.publish("count", count);
     }
 
