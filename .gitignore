@@ -9,6 +9,9 @@ target/
 .settings/
 .metadata/
 stacktrace.log
-
 .idea/
 *.iml
+.classpath
+.project
+.settings/
+target/
