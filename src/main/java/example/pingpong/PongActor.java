@@ -1,14 +1,12 @@
 package example.pingpong;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import com.google.common.base.Preconditions;
-
 import monterey.actor.Actor;
 import monterey.actor.ActorContext;
 import monterey.actor.MessageContext;
 import monterey.logging.Logger;
 import monterey.logging.LoggerFactory;
+
+import com.google.common.base.Preconditions;
 
 public class PongActor implements Actor {
     private static final Logger LOG = new LoggerFactory().getLogger("Actor");
@@ -17,7 +15,7 @@ public class PongActor implements Actor {
     public static final String MESSAGE_FORMAT = "%s: %d";
 
     private ActorContext context;
-    private AtomicLong count = new AtomicLong(0L);
+    private long count = 0L;
     private String message;
     
     public void init(ActorContext context) {
@@ -29,6 +27,6 @@ public class PongActor implements Actor {
 
     public void onMessage(Object payload, MessageContext messageContext) {
         LOG.info("Pong got '%s'", (String) payload);
-        context.sendTo(messageContext.getSource(), String.format(MESSAGE_FORMAT, message, count.incrementAndGet()));
+        context.sendTo(messageContext.getSource(), String.format(MESSAGE_FORMAT, message, ++count));
     }
 }
