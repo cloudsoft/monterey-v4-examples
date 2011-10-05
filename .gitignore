@@ -12,4 +12,5 @@ target/
 *.classpath
 *.log
 *.iml
+*.swo
 *.swp
