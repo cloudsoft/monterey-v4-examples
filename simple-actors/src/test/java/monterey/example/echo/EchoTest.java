@@ -29,7 +29,7 @@ public class EchoTest {
         assertTrue(harness.getActorInstance(actorRef) instanceof EchoActor);
     }
 
-    @Test
+    @Test(enabled=false)
     public void testEchoedResponse() {
         ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.echo.EchoActor", "Echo Actor"));
         harness.sendTo(actorRef, "echo!");

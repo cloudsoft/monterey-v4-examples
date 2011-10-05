@@ -27,6 +27,6 @@ public class SuspendResumeTest {
     public void testMyActorIsInstantiated() throws Exception {
         ActorRef actorRef = harness.newActor(
                 new ActorSpec("monterey.example.suspendresume.SuspendResumeActor", "Suspend/Resume test actor"));
-        assertTrue(harness.getActorInstance(actorRef) instanceof SuspendResumeTest);
+        assertTrue(harness.getActorInstance(actorRef) instanceof SuspendResumeActor);
     }
 }
