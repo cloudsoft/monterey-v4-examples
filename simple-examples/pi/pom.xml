@@ -1,0 +1,179 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>monterey-v4-example</groupId>
+    <artifactId>parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Pi Calculator</name>
+ 
+    <description>
+        Monterey v4 example
+    </description>
+ 
+    <modules>
+        <module>simple-actor</module>
+        <module>simple-app</module>
+ 
+    </modules>
+ 
+        <repositories>
+          <repository>
+            <id>cloudsoft-releases</id>
+            <url>http://developers.cloudsoftcorp.com/download/maven2/</url>
+          </repository>
+        </repositories>
+ 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+ 
+        <brooklyn.version>0.1.0-M1</brooklyn.version>
+        <brooklyn-integration.version>0.1.0-M1</brooklyn-integration.version>
+        <monterey.version>4.0.0-M1</monterey.version>
+        <activemq.version>5.5.0</activemq.version>
+        <groovy.version>1.8.0</groovy.version>
+        <surefire.version>2.9</surefire.version>
+        <testng.version>6.0.1</testng.version>
+        <mortbay.jetty.version>6.1.26</mortbay.jetty.version>
+        <guava.version>r09</guava.version>
+        <jclouds.version>1.1.1</jclouds.version>
+    </properties>
+ 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>monterey</groupId>
+                <artifactId>monterey-actor-api</artifactId>
+                <version>${monterey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>monterey</groupId>
+                <artifactId>monterey-venue-pojo</artifactId>
+                <version>${monterey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>monterey</groupId>
+                <artifactId>monterey-venue-util</artifactId>
+                <version>${monterey.version}</version>
+            </dependency>
+ 
+            <dependency>
+                <groupId>brooklyn-integration</groupId>
+                <artifactId>monterey-integration</artifactId>
+                <version>${brooklyn-integration.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>brooklyn-integration</groupId>
+                <artifactId>monterey-example</artifactId>
+                <version>${brooklyn-integration.version}</version>
+            </dependency>
+ 
+            <dependency>
+                <groupId>brooklyn</groupId>
+                <artifactId>brooklyn-launcher</artifactId>
+                <version>${brooklyn.version}</version>
+            </dependency>
+ 
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>monterey</groupId>
+                <artifactId>monterey-venue-pojo</artifactId>
+                <version>${monterey.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+ 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                  <artifactId>maven-shade-plugin</artifactId>
+                  <version>1.4</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <version>2.8</version>
+                    <configuration>
+                        <additionalProjectnatures>
+                            <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
+                            <projectnature>org.maven.ide.eclipse.maven2Nature</projectnature>
+                        </additionalProjectnatures>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <verbose>false</verbose>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>2.5.1-M3</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>1.8.0-03</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+ 
+</project>
