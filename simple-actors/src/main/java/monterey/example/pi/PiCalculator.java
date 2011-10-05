@@ -8,7 +8,7 @@ import org.springframework.util.StringUtils;
 
 public class PiCalculator implements Actor {
 
-    private static final String TYPE = "simple.PiCalculator";
+    private static final String TYPE = PiCalculator.class.getCanonicalName();
 
     ActorContext context;
 

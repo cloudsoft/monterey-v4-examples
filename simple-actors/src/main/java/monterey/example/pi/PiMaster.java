@@ -42,7 +42,6 @@ public class PiMaster implements Actor {
 
     public void onMessage(Object payload, MessageContext context) {
         pi += (Double) payload;
-        System.out.println("Pi now: " + pi);
     }
 
 }

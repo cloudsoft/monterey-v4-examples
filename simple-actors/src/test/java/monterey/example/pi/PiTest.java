@@ -3,36 +3,36 @@ package monterey.example.pi;
 import monterey.actor.ActorRef;
 import monterey.actor.ActorSpec;
 import monterey.venue.testharness.VenueTestHarness;
-import org.testng.Assert;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sam
- * Date: 04/10/2011
- * Time: 16:57
- * To change this template use File | Settings | File Templates.
- */
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
+
 public class PiTest {
 
-    public void testMyActorIsInstantiated() throws Exception {
+    VenueTestHarness harness;
 
-        VenueTestHarness harness = VenueTestHarness.Factory.newInstance();
-        ActorRef actorRef = harness.newActor(new ActorSpec("simple.PiMaster", "lalala"));
+    @BeforeMethod
+    private void setupHarness() {
+        harness = VenueTestHarness.Factory.newInstance();
+    }
 
-        Assert.assertTrue(harness.getActorInstance(actorRef) instanceof PiMaster);
-        PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
-
-        System.out.println("The wait is over..");
-        System.out.println(master.pi);
-        
+    @AfterMethod(alwaysRun=true)
+    private void tearDownHarness() {
         harness.shutdown();
     }
 
-    public static void main(String[] args) {
-        try {
-            (new PiTest()).testMyActorIsInstantiated();
-        } catch (Exception e) {
-            // ..
-        }
+    @Test
+    public void testMyActorIsInstantiated() throws Exception {
+        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.pi.PiMaster", "Pi test actor"));
+        assertTrue(harness.getActorInstance(actorRef) instanceof PiMaster);
+    }
+
+    @Test
+    public void testMasterConvergesToPi() throws Exception {
+        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.pi.PiMaster", "Pi test actor"));
+        PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
+        assertTrue(Math.PI - master.pi < 0.0000001);
     }
 }

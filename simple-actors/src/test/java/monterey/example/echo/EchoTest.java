@@ -3,26 +3,38 @@ package monterey.example.echo;
 import monterey.actor.ActorRef;
 import monterey.actor.ActorSpec;
 import monterey.venue.testharness.VenueTestHarness;
-import org.testng.Assert;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 public class EchoTest {
 
-    public void testMyActorIsInstantiated() throws Exception {
+    VenueTestHarness harness;
 
-        VenueTestHarness harness = VenueTestHarness.Factory.newInstance();
-        ActorRef actorRef = harness.newActor(new ActorSpec("simple.PiMaster", "lalala"));
+    @BeforeMethod
+    private void setupHarness() {
+        harness = VenueTestHarness.Factory.newInstance();
+    }
 
-        Assert.assertTrue(harness.getActorInstance(actorRef) instanceof EchoTest);
-        EchoTest master = (EchoTest) harness.getActorInstance(actorRef);
+    @AfterMethod(alwaysRun=true)
+    private void tearDownHarness() {
         harness.shutdown();
-
     }
 
-    public static void main(String[] args) {
-        try {
-            (new EchoTest()).testMyActorIsInstantiated();
-        } catch (Exception e) {
-            // ..
-        }
+    @Test
+    public void testActorIsInstantiated() throws Exception {
+        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.echo.EchoActor", "Echo test actor"));
+        assertTrue(harness.getActorInstance(actorRef) instanceof EchoActor);
     }
+
+    @Test
+    public void testEchoedResponse() {
+        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.echo.EchoActor", "Echo Actor"));
+        harness.sendTo(actorRef, "echo!");
+        String response = "";
+        assertEquals(response, "echo!");
+    }
+
 }
