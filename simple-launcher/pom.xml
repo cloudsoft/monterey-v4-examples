@@ -3,12 +3,12 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>monterey-v4-examples</groupId>
-    <artifactId>simple-app</artifactId>
+    <artifactId>simple-launcher</artifactId>
     <version>4.0.0-M1</version>
  
     <parent>
         <groupId>monterey-v4-examples</groupId>
-        <artifactId>monterey</artifactId>
+        <artifactId>monterey-examples</artifactId>
         <version>4.0.0-M1</version>
     </parent>
  

@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>monterey-v4-examples</groupId>
-    <artifactId>monterey</artifactId>
+    <artifactId>monterey-examples</artifactId>
     <packaging>pom</packaging>
     <version>4.0.0-M1</version>
     <name>Monterey 4.0 Examples</name>
