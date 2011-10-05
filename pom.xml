@@ -57,11 +57,6 @@
                 <artifactId>monterey-venue-util</artifactId>
                 <version>${monterey.version}</version>
             </dependency>
-            <dependency>
-                <groupId>monterey</groupId>
-                <artifactId>monterey-venue-pojo</artifactId>
-                <version>${monterey.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>brooklyn-integration</groupId>
