@@ -5,6 +5,7 @@
 target/
 bin/
 target/
+activemq-data/
 *~
 *.DS_Store
 *.class

@@ -7,6 +7,7 @@ import monterey.actor.MessageContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PiMaster implements Actor {
 
@@ -14,6 +15,7 @@ public class PiMaster implements Actor {
     private static final int NO_CALCULATIONS = 10000;
     private static final int NO_ELEMENTS_PER_MESSAGE = 10000;
 
+    private AtomicBoolean started = new AtomicBoolean(false);
     List<ActorRef> calculators = new ArrayList<ActorRef>();
     ActorContext context;
     Double pi;
@@ -21,8 +23,13 @@ public class PiMaster implements Actor {
     public void init(ActorContext context) {
         this.context = context;
         this.pi = 0d;
-        createActors();
-        scheduleWork();
+    }
+
+    public void start() {
+        if (started.compareAndSet(false, true)) {
+            createActors();
+            scheduleWork();
+        }
     }
 
     private void createActors() {
