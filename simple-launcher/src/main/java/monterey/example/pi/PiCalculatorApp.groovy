@@ -21,7 +21,6 @@ public class PiCalculatorApp extends AbstractApplication {
     }
   
     public void init() {
-        
         def config = new MontereyConfig()
         def monterey = config.network(this, name: "Pi Calculator Network",
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
@@ -30,11 +29,11 @@ public class PiCalculatorApp extends AbstractApplication {
                 url ""
             }
             actors(defaultStrategy:"pojo") {
-                type PiMaster.class.getName()
-                type PiCalculator.class.getName()
+                type "monterey.example.pi.PiMaster"
+                type "monterey.example.pi.PiCalculator"
             }
             venues {
-                actor PiMaster.class.getName(), displayName: "Pi Master!"
+                actor "monterey.example.pi.PiMaster", displayName: "Pi Master!", autoStart: true
             }
         }
     }

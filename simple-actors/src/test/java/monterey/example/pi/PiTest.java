@@ -33,7 +33,6 @@ public class PiTest {
     public void testMasterConvergesToPi() throws Exception {
         ActorRef actorRef = harness.newActor(new ActorSpec(PiMaster.class.getName(), "Pi test actor"));
         PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
-        master.start();
         assertTrue(Math.PI - master.pi < 0.0000001);
     }
 }
