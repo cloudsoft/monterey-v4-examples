@@ -24,9 +24,9 @@ public class HelloWorldTest {
     }
 
     @Test
-    public void testMyActorIsInstantiated() throws Exception {
+    public void testActorIsInstantiated() throws Exception {
         ActorRef actorRef = harness.newActor(
-                new ActorSpec("monterey.example.helloworld.HelloWorldActor", "Hello, world! test actor"));
+                new ActorSpec(HelloWorldActor.class.getName(), "Hello, world! test actor"));
         assertTrue(harness.getActorInstance(actorRef) instanceof HelloWorldActor);
     }
 

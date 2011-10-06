@@ -24,14 +24,14 @@ public class PiTest {
     }
 
     @Test
-    public void testMyActorIsInstantiated() throws Exception {
-        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.pi.PiMaster", "Pi test actor"));
+    public void testActorIsInstantiated() throws Exception {
+        ActorRef actorRef = harness.newActor(new ActorSpec(PiMaster.class.getName(), "Pi test actor"));
         assertTrue(harness.getActorInstance(actorRef) instanceof PiMaster);
     }
 
     @Test
     public void testMasterConvergesToPi() throws Exception {
-        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.pi.PiMaster", "Pi test actor"));
+        ActorRef actorRef = harness.newActor(new ActorSpec(PiMaster.class.getName(), "Pi test actor"));
         PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
         master.start();
         assertTrue(Math.PI - master.pi < 0.0000001);

@@ -25,13 +25,13 @@ public class EchoTest {
 
     @Test
     public void testActorIsInstantiated() throws Exception {
-        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.echo.EchoActor", "Echo test actor"));
+        ActorRef actorRef = harness.newActor(new ActorSpec(EchoActor.class.getName(), "Echo test actor"));
         assertTrue(harness.getActorInstance(actorRef) instanceof EchoActor);
     }
 
     @Test(enabled=false)
     public void testEchoedResponse() {
-        ActorRef actorRef = harness.newActor(new ActorSpec("monterey.example.echo.EchoActor", "Echo Actor"));
+        ActorRef actorRef = harness.newActor(new ActorSpec(EchoActor.class.getName(), "Echo Actor"));
         harness.sendTo(actorRef, "echo!");
         String response = "";
         assertEquals(response, "echo!");
