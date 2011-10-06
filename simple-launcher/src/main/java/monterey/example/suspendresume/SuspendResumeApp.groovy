@@ -30,10 +30,10 @@ public class SuspendResumeApp extends AbstractApplication {
                 url ""
             }
             actors(defaultStrategy:"pojo") {
-                type SuspendResumeActor.class.getName()
+                type "monterey.example.suspendresume.SuspendResumeActor"
             }
             venues {
-                actor PiMaster.class.getName(), displayName: "Pi Master!"
+                actor "monterey.example.suspendresume.SuspendResumeActor", displayName: "Pi Master!"
             }
         }
     }

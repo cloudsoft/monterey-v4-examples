@@ -30,11 +30,11 @@ public class PingApp extends AbstractApplication {
                 url ""
             }
             actors(defaultStrategy:"pojo") {
-                type PingActor.class.getName()
-                type PongActor.class.getName()
+                type "monterey.example.pingpong.PingActor"
+                type "monterey.example.pingpong.PongActor"
             }
             venues {
-                actor PingActor.class.getName(), displayName: "Ping actor"
+                actor "monterey.example.pingpong.PingActor", displayName: "Ping actor"
             }
         }
     }

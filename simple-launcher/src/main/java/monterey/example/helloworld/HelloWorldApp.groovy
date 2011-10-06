@@ -30,10 +30,10 @@ public class HelloWorldApp extends AbstractApplication {
                 url ""
             }
             actors(defaultStrategy:"pojo") {
-                type HelloWorldActor.class.getName()
+                type "monterey.example.helloworld.HelloWorldActor"
             }
             venues {
-                actor HelloWorldActor.class.getName(), displayName: "Greeta"
+                actor "monterey.example.helloworld.HelloWorldActor", displayName: "Greeta"
             }
         }
     }

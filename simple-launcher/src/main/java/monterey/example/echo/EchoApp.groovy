@@ -30,10 +30,10 @@ public class EchoApp extends AbstractApplication {
                 url ""
             }
             actors(defaultStrategy:"pojo") {
-                type EchoActor.class.getName()
+                type "monterey.example.echo.EchoActor"
             }
             venues {
-                actor EchoActor.class.getName(), displayName: "Echo"
+                actor "monterey.example.echo.EchoActor", displayName: "Echo"
             }
         }
     }
