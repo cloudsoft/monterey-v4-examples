@@ -4,15 +4,15 @@ import monterey.actor.Actor;
 import monterey.actor.ActorContext;
 import monterey.actor.ActorRef;
 import monterey.actor.MessageContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import monterey.logging.Logger;
+import monterey.logging.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PiMaster implements Actor {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PiMaster.class);
+    private static final Logger LOG = new LoggerFactory().getLogger(PiMaster.class);
 
     private static final int NO_CALCULATORS = 8;
     private static final int NO_CALCULATIONS = 10000;

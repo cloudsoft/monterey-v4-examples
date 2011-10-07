@@ -19,15 +19,17 @@
         </dependency>
         <dependency>
             <groupId>monterey</groupId>
-            <artifactId>monterey-venue-pojo</artifactId>
+            <artifactId>monterey-venue-util</artifactId>
         </dependency>
         <dependency>
             <groupId>monterey</groupId>
-            <artifactId>monterey-venue-util</artifactId>
+            <artifactId>monterey-venue-pojo</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
