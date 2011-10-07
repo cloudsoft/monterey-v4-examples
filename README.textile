@@ -1,26 +1,24 @@
 h1. Monterey version 4 example projects
 
-This repository contains several simple actors for Monterey v4 and launchers to
-run them in Brooklyn.  The actors are:
+This repository contains several simple actors for Monterey v4 and launchers to run them in Brooklyn.  The actors are:
 
-* Hello, world: Receives messages and replies to the sender with a 'hello' 
-* Echo: Replies to messages with whatever data it was sent
-* Pi calculator: A master actor creates several child actors to calculate chunks of pi and accumulates their responses
-* Ping/pong: Two actors message each other back and forth
-* Suspend/resume: Demonstrates that suspending and resuming actors maintains actor state.
+* *Hello, world*: Receives messages and replies to the sender with a 'hello'
+* *Echo*: Replies to messages with whatever data it was sent
+* *Pi calculator*: A master actor creates several child actors to calculate chunks of pi and accumulates their responses
+* *Ping/pong*: Two actors message each other back and forth
+* *Suspend/resume*: Demonstrates that suspending and resuming actors maintains actor state.
 
 Each actor has a corresponding test case demonstrating its behaviour that uses the Monterey Venue test harness.
 
 h2. Building the actors
 
 Clone the repository and build the examples:
-<code>
-git clone https://github.com/cloudsoft/monterey-v4-examples.git
+<pre><code>git clone https://github.com/cloudsoft/monterey-v4-examples.git
 cd monterey-v4-examples
-mvn package
-</code>
+mvn package</code>
+</pre>
 
-This will run the actor tests and create a JAR file in simple-actors/target/ that can be deployed to a Venue.
+This will run the actor tests and create a JAR file in <code>simple-actors/target/</code> that can be deployed to a Venue.
 
 h2. Running an actor
 
