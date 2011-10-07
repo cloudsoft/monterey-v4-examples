@@ -27,7 +27,7 @@ public class HelloWorldApp extends AbstractApplication {
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
             brokers("activemq", jmxPort:11099)
             bundles {
-                url ""
+                url "wrap:file:///path/to/your/target/simple-actors-4.0.0-M1.jar"
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.helloworld.HelloWorldActor"
