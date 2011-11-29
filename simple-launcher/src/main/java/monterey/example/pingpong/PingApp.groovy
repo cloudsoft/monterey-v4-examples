@@ -1,10 +1,10 @@
 package monterey.example.pingpong;
 
+import monterey.brooklyn.MontereyConfig
 import brooklyn.entity.basic.AbstractApplication
+import brooklyn.entity.messaging.activemq.ActiveMQBroker
 import brooklyn.launcher.BrooklynLauncher
 import brooklyn.location.basic.LocalhostMachineProvisioningLocation
-
-import monterey.brooklyn.MontereyConfig
 
 public class PingApp extends AbstractApplication {
 
@@ -23,18 +23,16 @@ public class PingApp extends AbstractApplication {
     public void init() {
 
         def config = new MontereyConfig()
-        def monterey = config.network(this, name: "Ping-pong Network",
+        def monterey = config.network(this, displayName: "Ping-pong Network",
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
-            brokers("activemq", jmxPort:11099)
+            brokers(ActiveMQBroker.class, jmxPort:11099)
             bundles {
-                url "wrap:file:///path/to/your/target/simple-actors-4.0.0-M1.jar"
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.pingpong.PingActor"
                 type "monterey.example.pingpong.PongActor"
-            }
-            venues {
-                actor "monterey.example.pingpong.PingActor", displayName: "Ping actor"
+                start "monterey.example.pingpong.PingActor", displayName: "Ping actor"
             }
         }
     }

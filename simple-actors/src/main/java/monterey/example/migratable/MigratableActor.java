@@ -1,25 +1,30 @@
-package monterey.example.suspendresume;
+package monterey.example.migratable;
 
 import java.io.Serializable;
 
 import monterey.actor.Actor;
 import monterey.actor.ActorContext;
 import monterey.actor.MessageContext;
-import monterey.actor.trait.Suspendable;
+import monterey.actor.annotation.PostResume;
+import monterey.actor.annotation.PostStart;
+import monterey.actor.annotation.PreSuspend;
 
 /** 
  * A very simple example of implementing a suspendable Actor.
  *
- * This shows how an actor can preserve its state when being suspended and resumed 
- * (including when being moved to a different location in between). Any subscriptions
- * done in start() will be automatically re-subscribed.
+ * This shows how an actor can preserve its state when being migrated from one venue
+ * to another (i.e. when being suspended and resumed). Any subscriptions done in
+ * start() will be automatically re-subscribed.
  * 
  * On resume, it will be a different instance of the actor so its fields must be 
  * set on resume.
  * 
  * In this class, the state is a simple counter of the number of messages received.
+ * 
+ * Here, we use annotations; alternatively we could have implemented 
+ * {@link monterey.actor.trait.Suspendable}.
  */
-public class SuspendResumeActor implements Actor, Suspendable {
+public class MigratableActor implements Actor {
     private ActorContext context;
     private long count;
 
@@ -36,18 +41,18 @@ public class SuspendResumeActor implements Actor, Suspendable {
         context.publish("count", count);
     }
 
-    @Override
+    @PostStart
     public void start(Object state) {
         count = 0;
         context.subscribe("topic1");
     }
 
-    @Override
+    @PreSuspend
     public Serializable suspend() {
         return count;
     }
     
-    @Override
+    @PostResume
     public void resume(Object state) {
         count = (Long) state;
     }

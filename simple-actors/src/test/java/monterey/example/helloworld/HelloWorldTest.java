@@ -14,12 +14,12 @@ public class HelloWorldTest {
     VenueTestHarness harness;
 
     @BeforeMethod
-    private void setupHarness() {
-        harness = VenueTestHarness.Factory.newInstance();
+    public void setupHarness() {
+        harness = VenueTestHarness.Factory.newInstance("activemq");
     }
 
     @AfterMethod(alwaysRun=true)
-    private void tearDownHarness() {
+    public void tearDownHarness() {
         harness.shutdown();
     }
 

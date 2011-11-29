@@ -4,18 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>monterey-v4-examples</groupId>
     <artifactId>simple-launcher</artifactId>
-    <version>4.0.0-M1</version>
+    <version>4.0.0-SNAPSHOT</version>
  
     <parent>
         <groupId>monterey-v4-examples</groupId>
         <artifactId>monterey-examples</artifactId>
-        <version>4.0.0-M1</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
  
     <dependencies>
         <dependency>
-            <groupId>brooklyn-integration</groupId>
-            <artifactId>monterey-integration</artifactId>
+            <groupId>monterey</groupId>
+            <artifactId>monterey-brooklyn-integration</artifactId>
         </dependency>
         <dependency>
             <groupId>brooklyn</groupId>

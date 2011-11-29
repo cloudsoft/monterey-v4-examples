@@ -1,10 +1,10 @@
 package monterey.example.helloworld;
 
+import monterey.brooklyn.MontereyConfig
 import brooklyn.entity.basic.AbstractApplication
+import brooklyn.entity.messaging.activemq.ActiveMQBroker
 import brooklyn.launcher.BrooklynLauncher
 import brooklyn.location.basic.LocalhostMachineProvisioningLocation
-
-import monterey.brooklyn.MontereyConfig
 
 public class HelloWorldApp extends AbstractApplication {
 
@@ -23,17 +23,16 @@ public class HelloWorldApp extends AbstractApplication {
     public void init() {
 
         def config = new MontereyConfig()
-        def monterey = config.network(this, name: "Hello, world! Network",
+        def monterey = config.network(this, displayName: "Hello, world! Network",
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
-            brokers("activemq", jmxPort:11099)
+            brokers(ActiveMQBroker.class, jmxPort:11099)
             bundles {
-                url "wrap:file:///path/to/your/target/simple-actors-4.0.0-M1.jar"
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
+//                url "wrap:file:///path/to/your/target/simple-actors-4.0.0-M1.jar"
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.helloworld.HelloWorldActor"
-            }
-            venues {
-                actor "monterey.example.helloworld.HelloWorldActor", displayName: "Greeta"
+//                start type:"monterey.example.helloworld.HelloWorldActor", displayName: "Greeta"
             }
         }
     }

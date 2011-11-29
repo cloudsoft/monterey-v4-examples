@@ -14,12 +14,12 @@ public class EchoTest {
     VenueTestHarness harness;
 
     @BeforeMethod
-    private void setupHarness() {
-        harness = VenueTestHarness.Factory.newInstance();
+    public void setupHarness() {
+        harness = VenueTestHarness.Factory.newInstance("activemq");
     }
 
     @AfterMethod(alwaysRun=true)
-    private void tearDownHarness() {
+    public void tearDownHarness() {
         harness.shutdown();
     }
 
@@ -29,7 +29,7 @@ public class EchoTest {
         assertTrue(harness.getActorInstance(actorRef) instanceof EchoActor);
     }
 
-    @Test(enabled=false)
+    @Test//(enabled=false)
     public void testEchoedResponse() {
         ActorRef actorRef = harness.newActor(new ActorSpec(EchoActor.class.getName(), "Echo Actor"));
         harness.sendTo(actorRef, "echo!");

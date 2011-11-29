@@ -1,6 +1,7 @@
-package monterey.example.suspendresume;
+package monterey.example.migratable;
 
 import monterey.actor.*;
+import monterey.example.migratable.MigratableActor;
 import monterey.venue.testharness.VenueTestHarness;
 
 import org.testng.annotations.AfterMethod;
@@ -13,32 +14,40 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.testng.Assert.*;
 
-public class SuspendResumeTest {
+public class MigratableActorTest {
 
     VenueTestHarness harness;
 
     @BeforeMethod
-    private void setupHarness() {
-        harness = VenueTestHarness.Factory.newInstance();
+    public void setupHarness() {
+        harness = VenueTestHarness.Factory.newInstance("activemq");
     }
 
     @AfterMethod(alwaysRun=true)
-    private void tearDownHarness() {
+    public void tearDownHarness() {
         harness.shutdown();
     }
 
     @Test
     public void testActorIsInstantiated() throws Exception {
-        ActorRef actorRef = harness.newActor(
-                new ActorSpec("monterey.example.suspendresume.SuspendResumeActor", "Suspend/Resume test actor"));
-        assertTrue(harness.getActorInstance(actorRef) instanceof SuspendResumeActor);
+        ActorRef actorRef = harness.newActor(new ActorSpec(MigratableActor.class.getName(), "Migration test actor"));
+        assertTrue(harness.getActorInstance(actorRef) instanceof MigratableActor);
+    }
+
+    @Test
+    public void testPostMigrationIsDifferentActorInstance() throws Exception {
+        ActorRef actorRef = harness.newActor(new ActorSpec(MigratableActor.class.getName(), "Migration test actor"));
+        Actor preInstance = harness.getActorInstance(actorRef);
+        harness.migrateActor(actorRef);
+        Actor postInstance = harness.getActorInstance(actorRef);
+        assertNotSame(preInstance, postInstance);
     }
 
     @Test
     public void testSuspendResume() throws Exception {
 
-        // Create a subscription to track messages published by the SuspendResume
-        // actor on the count topic.
+        // Create a subscription to track messages published by the actor
+        // on the count topic.
         final List<Object> receivedMsgs = new CopyOnWriteArrayList<Object>();
         harness.subscribe("count", new MessageListener() {
             @Override
@@ -46,9 +55,8 @@ public class SuspendResumeTest {
                 receivedMsgs.add(o);
             }
         });
-        ActorRef actorRef = harness.newActor(
-                new ActorSpec(SuspendResumeActor.class.getName(), "Suspend/Resume test actor"));
-        SuspendResumeActor actor = (SuspendResumeActor) harness.getActorInstance(actorRef);
+        ActorRef actorRef = harness.newActor(new ActorSpec(MigratableActor.class.getName(), "Suspend/Resume test actor"));
+        MigratableActor actor = (MigratableActor) harness.getActorInstance(actorRef);
         actor.start(null);
 
         // Check correct count is published
@@ -56,8 +64,7 @@ public class SuspendResumeTest {
         assertEventuallyEquals(receivedMsgs, Arrays.asList(1L), 10 * 1000);
 
         // Suspend and resume the actor, then send it a second message
-        harness.suspendActor(actorRef);
-        harness.resumeActor(actorRef);
+        harness.migrateActor(actorRef);
         harness.sendTo(actorRef, null);
 
         assertEventuallyEquals(receivedMsgs, Arrays.asList(1L, 2L), 10 * 1000);
