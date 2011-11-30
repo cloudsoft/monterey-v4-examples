@@ -16,11 +16,31 @@
         <dependency>
             <groupId>monterey</groupId>
             <artifactId>monterey-brooklyn-integration</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        
         <dependency>
             <groupId>brooklyn</groupId>
             <artifactId>brooklyn-launcher</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.8</version>
+        </dependency>
+        
     </dependencies>
   
     <build>
