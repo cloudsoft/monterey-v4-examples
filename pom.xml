@@ -30,61 +30,46 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <brooklyn.version>0.2.0-SNAPSHOT</brooklyn.version>
         <monterey.version>4.0.0-SNAPSHOT</monterey.version>
-        <activemq.version>5.5.1</activemq.version>
+
         <groovy.version>1.8.2</groovy.version>
         <surefire.version>2.9</surefire.version>
         <testng.version>6.0.1</testng.version>
         <mortbay.jetty.version>6.1.26</mortbay.jetty.version>
-        <guava.version>10.0.1</guava.version>
-        <jclouds.version>1.2.1</jclouds.version>
-        <groovy.version>1.8.2</groovy.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- importing maven dependencies from monterey and brooklyn parent poms -->
             <dependency>
                 <groupId>monterey</groupId>
-                <artifactId>monterey-actor-api</artifactId>
+                <artifactId>monterey-parent</artifactId>
                 <version>${monterey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
             <dependency>
-                <groupId>monterey</groupId>
-                <artifactId>monterey-testharness</artifactId>
-                <version>${monterey.version}</version>
+                <groupId>brooklyn</groupId>
+                <artifactId>brooklyn-parent</artifactId>
+                <version>${brooklyn.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            
             <dependency>
-                <groupId>monterey</groupId>
-                <artifactId>monterey-venue-util</artifactId>
-                <version>${monterey.version}</version>
+                <groupId>brooklyn</groupId>
+                <artifactId>brooklyn-launcher</artifactId>
+                <version>${brooklyn.version}</version>
             </dependency>
             <dependency>
                 <groupId>monterey</groupId>
                 <artifactId>monterey-brooklyn-integration</artifactId>
                 <version>${monterey.version}</version>
             </dependency>
-
             <dependency>
-                <groupId>brooklyn</groupId>
-                <artifactId>brooklyn-launcher</artifactId>
-                <version>${brooklyn.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.codehaus.groovy</groupId>
-                <artifactId>groovy-all</artifactId>
-                <version>${groovy.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>${testng.version}</version>
+                <groupId>monterey</groupId>
+                <artifactId>monterey-testharness</artifactId>
+                <version>${monterey.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
