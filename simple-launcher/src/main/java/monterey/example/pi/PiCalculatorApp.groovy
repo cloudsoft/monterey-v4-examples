@@ -31,11 +31,8 @@ public class PiCalculatorApp extends AbstractApplication {
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.pi.PiMaster"
                 type "monterey.example.pi.PiCalculator"
-            }
-            venues {
-                actor "monterey.example.pi.PiMaster", displayName: "Pi Master!", autoStart: true
+                start "Pi Master!", type:"monterey.example.pi.PiMaster"
             }
         }
     }
 }
-

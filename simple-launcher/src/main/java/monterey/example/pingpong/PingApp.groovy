@@ -32,7 +32,7 @@ public class PingApp extends AbstractApplication {
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.pingpong.PingActor"
                 type "monterey.example.pingpong.PongActor"
-                start "monterey.example.pingpong.PingActor", displayName: "Ping actor"
+                start "Ping actor", "monterey.example.pingpong.PingActor"
             }
         }
     }

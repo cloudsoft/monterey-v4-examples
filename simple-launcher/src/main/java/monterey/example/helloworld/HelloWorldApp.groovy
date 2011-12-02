@@ -32,7 +32,7 @@ public class HelloWorldApp extends AbstractApplication {
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.helloworld.HelloWorldActor"
-//                start type:"monterey.example.helloworld.HelloWorldActor", displayName: "Greeta"
+                start "Greeta", type:"monterey.example.helloworld.HelloWorldActor"
             }
         }
     }
