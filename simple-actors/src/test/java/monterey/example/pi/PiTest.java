@@ -33,6 +33,10 @@ public class PiTest {
     public void testMasterConvergesToPi() throws Exception {
         ActorRef actorRef = harness.newActor(new ActorSpec(PiMaster.class.getName(), "Pi test actor"));
         PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
-        assertTrue(Math.PI - master.pi < 0.0000001);
+        
+        // TODO Should demonstrate better way of waiting for work to complete!
+        Thread.sleep(10+1000);
+        
+        assertTrue(Math.PI - master.pi < 0.0000001, "actual="+master.pi);
     }
 }
