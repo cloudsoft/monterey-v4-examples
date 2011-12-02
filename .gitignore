@@ -5,6 +5,7 @@
 target/
 bin/
 target/
+test-output/
 activemq-data/
 *~
 *.DS_Store
