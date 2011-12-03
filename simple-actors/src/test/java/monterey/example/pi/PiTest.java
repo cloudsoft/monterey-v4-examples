@@ -35,8 +35,8 @@ public class PiTest {
         PiMaster master = (PiMaster) harness.getActorInstance(actorRef);
         
         // TODO Should demonstrate better way of waiting for work to complete!
-        Thread.sleep(10+1000);
+        Thread.sleep(2*1000);
         
-        assertTrue(Math.PI - master.pi < 0.0000001, "actual="+master.pi);
+        assertTrue(Math.abs(Math.PI - master.pi) < 0.00001, "actual="+master.pi+"; diff="+(Math.PI - master.pi));
     }
 }

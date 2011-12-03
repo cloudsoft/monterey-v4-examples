@@ -15,7 +15,7 @@ public class PiMaster implements Actor {
     private static final Logger LOG = new LoggerFactory().getLogger(PiMaster.class);
 
     private static final int NO_CALCULATORS = 8;
-    private static final int NO_CALCULATIONS = 10000;
+    private static final int NO_CALCULATIONS = 100;
     private static final int NO_ELEMENTS_PER_MESSAGE = 10000;
 
     private int remainingResponses = NO_CALCULATIONS;
