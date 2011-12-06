@@ -23,12 +23,9 @@ public class HelloWorldApp extends AbstractApplication {
     public void init() {
 
         def config = new MontereyConfig()
-        def monterey = config.network(this, displayName: "Hello, world! Network",
-                initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
-            brokers(ActiveMQBroker.class, jmxPort:11099)
+        def monterey = config.network(this, displayName: "Hello, world! Network") {
             bundles {
                 url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
-//                url "wrap:file:///path/to/your/target/simple-actors-4.0.0-M1.jar"
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.helloworld.HelloWorldActor"

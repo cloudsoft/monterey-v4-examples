@@ -9,6 +9,7 @@ import monterey.logging.Logger;
 import monterey.logging.LoggerFactory;
 
 import com.google.common.base.Preconditions;
+import monterey.util.StringUtils;
 
 public class PingActor implements Actor {
     private static final Logger LOG = new LoggerFactory().getLogger("Actor");
@@ -26,7 +27,7 @@ public class PingActor implements Actor {
         this.message = context.getConfigurationParams().get(MESSAGE_KEY);
         LOG.info("Ping initialised with '%s'", message);
 
-        ActorRef pong = context.newActor(new ActorSpec(PongActor.class.getName(), "pong", "Pong Actor", context.getConfigurationParams()));
+        ActorRef pong = context.newActor(new ActorSpec(PongActor.class.getName(), "Pong actor " + this.message, "Pong Actor created by Ping Actor " + this.message, context.getConfigurationParams()));
         context.sendTo(pong, "INIT");
     }
 

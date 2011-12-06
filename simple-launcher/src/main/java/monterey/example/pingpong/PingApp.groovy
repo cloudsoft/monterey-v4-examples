@@ -21,19 +21,18 @@ public class PingApp extends AbstractApplication {
     }
 
     public void init() {
-
+        def message = "test1"
         def config = new MontereyConfig()
-        def monterey = config.network(this, displayName: "Ping-pong Network",
-                initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
-            brokers(ActiveMQBroker.class, jmxPort:11099)
+        def monterey = config.network(this, displayName: "Ping-pong Network") {
             bundles {
                 url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.pingpong.PingActor"
                 type "monterey.example.pingpong.PongActor"
-                start "Ping actor", "monterey.example.pingpong.PingActor"
+                start "Ping actor " + message, type:"monterey.example.pingpong.PingActor", config:["message": message]
             }
         }
     }
+
 }

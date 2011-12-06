@@ -15,6 +15,7 @@ public class MigratableApp extends AbstractApplication {
         BrooklynLauncher.manage(app)
 
         // Start the app on localhost
+        
         LocalhostMachineProvisioningLocation loc = new LocalhostMachineProvisioningLocation(count:10)
         app.start([loc])
 
@@ -25,7 +26,7 @@ public class MigratableApp extends AbstractApplication {
         def config = new MontereyConfig()
         def monterey = config.network(this, displayName: "MigratableApp Test Network",
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
-            brokers(ActiveMQBroker.class, jmxPort:11099)
+            brokers(ActiveMQBroker.class, jmxPort:9999)
             bundles {
                 url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
             }
