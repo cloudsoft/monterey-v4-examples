@@ -31,7 +31,7 @@ public class MigratableApp extends AbstractApplication {
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.migratable.MigratableActor"
-                start "Migrata", "monterey.example.migratable.MigratableActor"
+                start "Migrata", type: "monterey.example.migratable.MigratableActor"
             }
         }
     }
