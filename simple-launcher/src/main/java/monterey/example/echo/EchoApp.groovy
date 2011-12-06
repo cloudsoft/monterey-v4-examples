@@ -31,7 +31,7 @@ public class EchoApp extends AbstractApplication {
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.echo.EchoActor"
-                start "Echoer", "monterey.example.echo.EchoActor"
+                start "Echoer", type:"monterey.example.echo.EchoActor"
             }
         }
     }
