@@ -9,7 +9,6 @@ import monterey.logging.Logger;
 import monterey.logging.LoggerFactory;
 
 import com.google.common.base.Preconditions;
-import monterey.util.StringUtils;
 
 public class PingActor implements Actor {
     private static final Logger LOG = new LoggerFactory().getLogger("Actor");
