@@ -21,6 +21,11 @@
         </dependency>
         <dependency>
             <groupId>monterey</groupId>
+            <artifactId>monterey-testharness</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>monterey</groupId>
             <artifactId>monterey-venue-pojo</artifactId>
             <scope>test</scope>
         </dependency>

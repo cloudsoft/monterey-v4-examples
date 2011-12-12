@@ -69,6 +69,11 @@
             </dependency>
             <dependency>
                 <groupId>monterey</groupId>
+                <artifactId>monterey-testharness</artifactId>
+                <version>${monterey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>monterey</groupId>
                 <artifactId>monterey-venue-util</artifactId>
                 <version>${monterey.version}</version>
             </dependency>
