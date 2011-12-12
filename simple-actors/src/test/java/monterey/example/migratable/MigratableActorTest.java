@@ -44,7 +44,7 @@ public class MigratableActorTest {
     }
 
     @Test
-    public void testSuspendResume() throws Exception {
+    public void testMigrate() throws Exception {
 
         // Create a subscription to track messages published by the actor
         // on the count topic.
@@ -63,7 +63,7 @@ public class MigratableActorTest {
         harness.sendTo(actorRef, null);
         assertEventuallyEquals(receivedMsgs, Arrays.asList(1L), 10 * 1000);
 
-        // Suspend and resume the actor, then send it a second message
+        // Migrate the actor, then send it a second message
         harness.migrateActor(actorRef);
         harness.sendTo(actorRef, null);
 

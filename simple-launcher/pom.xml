@@ -2,26 +2,18 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>monterey-v4-examples</groupId>
     <artifactId>simple-launcher</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
  
     <parent>
         <groupId>monterey-v4-examples</groupId>
         <artifactId>monterey-examples</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>4.0.0-M2-RC2</version>
     </parent>
  
     <dependencies>
         <dependency>
             <groupId>monterey</groupId>
             <artifactId>monterey-brooklyn-integration</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-jdk14</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         
         <dependency>
@@ -48,7 +40,7 @@
                                     <excludes>
                                         <exclude>META-INF/*.SF</exclude>
                                         <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>                                       
+                                        <exclude>META-INF/*.RSA</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
