@@ -35,8 +35,7 @@ public class SuspendResumeTest {
     }
 
     @Test
-    public void testSuspendResume() throws Exception {
-
+    public void testMigrate() throws Exception {
         // Create a subscription to track messages published by the SuspendResume
         // actor on the count topic.
         final List<Object> receivedMsgs = new CopyOnWriteArrayList<Object>();
@@ -55,9 +54,8 @@ public class SuspendResumeTest {
         harness.sendTo(actorRef, null);
         assertEventuallyEquals(receivedMsgs, Arrays.asList(1L), 10 * 1000);
 
-        // Suspend and resume the actor, then send it a second message
-        harness.suspendActor(actorRef);
-        harness.resumeActor(actorRef);
+        // Migrate the actor, then send it a second message
+        harness.migrateActor(actorRef);
         harness.sendTo(actorRef, null);
 
         assertEventuallyEquals(receivedMsgs, Arrays.asList(1L, 2L), 10 * 1000);
