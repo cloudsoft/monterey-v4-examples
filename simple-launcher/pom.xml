@@ -8,6 +8,7 @@
         <groupId>monterey-v4-examples</groupId>
         <artifactId>monterey-examples</artifactId>
         <version>4.0.0-M2</version>
+        <relativePath>../monterey-v4-examples-parent/pom.xml</relativePath>
     </parent>
  
     <dependencies>
