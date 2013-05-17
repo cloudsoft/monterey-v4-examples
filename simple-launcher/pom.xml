@@ -7,7 +7,7 @@
     <parent>
         <groupId>monterey-v4-examples</groupId>
         <artifactId>monterey-examples</artifactId>
-        <version>4.0.0-M2</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
  
     <dependencies>
@@ -17,7 +17,7 @@
         </dependency>
         
         <dependency>
-            <groupId>brooklyn</groupId>
+            <groupId>io.brooklyn</groupId>
             <artifactId>brooklyn-launcher</artifactId>
         </dependency>
         
