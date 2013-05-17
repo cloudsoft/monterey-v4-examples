@@ -21,7 +21,7 @@ public class PongActor implements Actor {
     public void init(ActorContext context) {
         Preconditions.checkArgument(context.getConfigurationParams().containsKey(MESSAGE_KEY), "Message configuration not set");
         this.context = context;
-        this.message = context.getConfigurationParams().get(MESSAGE_KEY);
+        this.message = (String) context.getConfigurationParams().get(MESSAGE_KEY);
         LOG.info("Pong initialised with '%s'", message);
     }
 
