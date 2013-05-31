@@ -2,24 +2,16 @@ package monterey.example.pi;
 
 import monterey.brooklyn.MontereyConfig
 import brooklyn.entity.basic.AbstractApplication
-import brooklyn.entity.messaging.activemq.ActiveMQBroker
+import brooklyn.entity.basic.Entities
+import brooklyn.entity.proxying.EntitySpecs
 import brooklyn.launcher.BrooklynLauncher
-import brooklyn.location.basic.LocalhostMachineProvisioningLocation
+import brooklyn.util.CommandLineUtil
+
+import com.google.common.collect.Lists
 
 public class PiCalculatorApp extends AbstractApplication {
-          
-    public static void main(String[] argv) {
-        // Create the app, configure it and have Brooklyn manage it
-        PiCalculatorApp app = new PiCalculatorApp(displayName: "Pi calculator app")
-        app.init()
-        BrooklynLauncher.manage(app)
-  
-        // Start the app on localhost
-        LocalhostMachineProvisioningLocation loc = new LocalhostMachineProvisioningLocation(count:10)
-        app.start([loc])
-
-    }
-  
+    
+    @Override
     public void init() {
         def config = new MontereyConfig()
         def monterey = config.network(this, displayName: "Pi Calculator Network") {
@@ -32,5 +24,19 @@ public class PiCalculatorApp extends AbstractApplication {
                 start "Pi Master!", type:"monterey.example.pi.PiMaster"
             }
         }
+    }
+    
+    public static void main(String[] argv) {
+        List<String> args = Lists.newArrayList(argv);
+        String port =  CommandLineUtil.getCommandLineOption(args, "--port", "8081+");
+        String location = CommandLineUtil.getCommandLineOption(args, "--location", "localhost");
+
+        BrooklynLauncher launcher = BrooklynLauncher.newInstance()
+                .application(EntitySpecs.appSpec(PiCalculatorApp.class).displayName("Pi calculator app"))
+                .webconsolePort(port)
+                .location(location)
+                .start();
+         
+        Entities.dumpInfo(launcher.getApplications());
     }
 }

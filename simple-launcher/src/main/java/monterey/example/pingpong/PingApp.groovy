@@ -2,24 +2,16 @@ package monterey.example.pingpong;
 
 import monterey.brooklyn.MontereyConfig
 import brooklyn.entity.basic.AbstractApplication
-import brooklyn.entity.messaging.activemq.ActiveMQBroker
+import brooklyn.entity.basic.Entities
+import brooklyn.entity.proxying.EntitySpecs
 import brooklyn.launcher.BrooklynLauncher
-import brooklyn.location.basic.LocalhostMachineProvisioningLocation
+import brooklyn.util.CommandLineUtil
+
+import com.google.common.collect.Lists
 
 public class PingApp extends AbstractApplication {
 
-    public static void main(String[] argv) {
-        // Create the app, configure it and have Brooklyn manage it
-        PingApp app = new PingApp(displayName: "Ping-pong app")
-        app.init()
-        BrooklynLauncher.manage(app)
-
-        // Start the app on localhost
-        LocalhostMachineProvisioningLocation loc = new LocalhostMachineProvisioningLocation(count:10)
-        app.start([loc])
-
-    }
-
+    @Override
     public void init() {
         def message = "test1"
         def config = new MontereyConfig()
@@ -35,4 +27,17 @@ public class PingApp extends AbstractApplication {
         }
     }
 
+    public static void main(String[] argv) {
+        List<String> args = Lists.newArrayList(argv);
+        String port =  CommandLineUtil.getCommandLineOption(args, "--port", "8081+");
+        String location = CommandLineUtil.getCommandLineOption(args, "--location", "localhost");
+
+        BrooklynLauncher launcher = BrooklynLauncher.newInstance()
+                .application(EntitySpecs.appSpec(PingApp.class).displayName("Ping-pong app"))
+                .webconsolePort(port)
+                .location(location)
+                .start();
+         
+        Entities.dumpInfo(launcher.getApplications());
+    }
 }

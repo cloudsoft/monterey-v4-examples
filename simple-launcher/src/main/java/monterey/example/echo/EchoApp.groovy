@@ -1,36 +1,42 @@
 package monterey.example.echo;
 
-import monterey.brooklyn.MontereyConfig
-import brooklyn.entity.basic.AbstractApplication
-import brooklyn.entity.messaging.activemq.ActiveMQBroker
-import brooklyn.launcher.BrooklynLauncher
-import brooklyn.location.basic.LocalhostMachineProvisioningLocation
+import java.util.List;
+
+import monterey.brooklyn.MontereyConfig;
+import brooklyn.entity.basic.AbstractApplication;
+import brooklyn.entity.basic.Entities;
+import brooklyn.entity.proxying.EntitySpecs;
+import brooklyn.launcher.BrooklynLauncher;
+import brooklyn.util.CommandLineUtil;
+
+import com.google.common.collect.Lists;
 
 public class EchoApp extends AbstractApplication {
 
-    public static void main(String[] argv) {
-        // Create the app, configure it and have Brooklyn manage it
-        EchoApp app = new EchoApp(displayName: "Echo app")
-        app.init()
-        BrooklynLauncher.manage(app)
-
-        // Start the app on localhost
-        LocalhostMachineProvisioningLocation loc = new LocalhostMachineProvisioningLocation(count:10)
-        app.start([loc])
-
-    }
-
+    @Override
     public void init() {
-
         def config = new MontereyConfig()
         def monterey = config.network(this, displayName: "Echo Network") {
             bundles {
                 url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
             }
             actors(defaultStrategy:"pojo") {
-                type "monterey.example.echo.EchoActor"
                 start "Echoer", type:"monterey.example.echo.EchoActor"
             }
         }
+    }
+    
+    public static void main(String[] argv) {
+        List<String> args = Lists.newArrayList(argv);
+        String port =  CommandLineUtil.getCommandLineOption(args, "--port", "8081+");
+        String location = CommandLineUtil.getCommandLineOption(args, "--location", "localhost");
+
+        BrooklynLauncher launcher = BrooklynLauncher.newInstance()
+                .application(EntitySpecs.appSpec(EchoApp.class).displayName("Echo app"))
+                .webconsolePort(port)
+                .location(location)
+                .start();
+         
+        Entities.dumpInfo(launcher.getApplications());
     }
 }
