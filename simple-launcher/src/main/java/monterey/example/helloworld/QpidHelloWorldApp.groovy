@@ -20,7 +20,7 @@ public class QpidHelloWorldApp extends AbstractApplication {
                 actorMigrationMode:ActorMigrationMode.USE_BROKER_WITH_ATOMIC_SUBSCRIBER_SWITCH) {
             brokers(QpidMontereyBroker, amqpPort:5678, jmxPort:11099)
             bundles {
-                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT" // MONTEREY_VERSION
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-M4" // MONTEREY_VERSION
             }
             actors(defaultStrategy:"pojo") {
                 start "Greeta", type:"monterey.example.helloworld.HelloWorldActor"

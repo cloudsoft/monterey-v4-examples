@@ -18,7 +18,7 @@ public class EchoApp extends AbstractApplication {
         def config = new MontereyConfig()
         def monterey = config.network(this, displayName: "Echo Network") {
             bundles {
-                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT" // MONTEREY_VERSION
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-M4" // MONTEREY_VERSION
             }
             actors(defaultStrategy:"pojo") {
                 start "Echoer", type:"monterey.example.echo.EchoActor"
