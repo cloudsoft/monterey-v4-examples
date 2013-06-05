@@ -6,7 +6,7 @@
     <groupId>monterey-v4-examples</groupId>
     <artifactId>monterey-examples</artifactId>
     <packaging>pom</packaging>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version> <!-- MONTEREY_VERSION -->
     <name>Monterey 4.0 Examples</name>
 
     <description>
@@ -42,8 +42,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <brooklyn.version>0.5.0</brooklyn.version>
-        <monterey.version>4.0.0-SNAPSHOT</monterey.version>
+        <brooklyn.version>0.5.0</brooklyn.version> <!-- BROOKLYN_VERSION -->
+        <monterey.version>4.0.0-SNAPSHOT</monterey.version> <!-- MONTEREY_VERSION -->
 
         <groovy.version>1.8.6</groovy.version>
         <surefire.version>2.13</surefire.version>
