@@ -1,15 +1,14 @@
 package monterey.example.helloworld;
 
-import java.util.List;
+import monterey.brooklyn.MontereyConfig
+import brooklyn.entity.basic.AbstractApplication
+import brooklyn.entity.basic.Entities
+import brooklyn.entity.messaging.activemq.ActiveMQBroker
+import brooklyn.entity.proxying.EntitySpecs
+import brooklyn.launcher.BrooklynLauncher
+import brooklyn.util.CommandLineUtil
 
-import monterey.brooklyn.MontereyConfig;
-import brooklyn.entity.basic.AbstractApplication;
-import brooklyn.entity.basic.Entities;
-import brooklyn.entity.proxying.EntitySpecs;
-import brooklyn.launcher.BrooklynLauncher;
-import brooklyn.util.CommandLineUtil;
-
-import com.google.common.collect.Lists;
+import com.google.common.collect.Lists
 
 public class HelloWorldApp extends AbstractApplication {
 
@@ -17,11 +16,11 @@ public class HelloWorldApp extends AbstractApplication {
     public void init() {
         def config = new MontereyConfig()
         def monterey = config.network(this, displayName: "Hello, world! Network") {
+            brokers(ActiveMQBroker, jmxPort:11099, rmiPort:9001)
             bundles {
-                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT" // MONTEREY_VERSION
             }
             actors(defaultStrategy:"pojo") {
-                type "monterey.example.helloworld.HelloWorldActor"
                 start "Greeta", type:"monterey.example.helloworld.HelloWorldActor"
             }
         }

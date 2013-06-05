@@ -20,7 +20,7 @@ public class HelloWorldTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDownHarness() {
-        harness.shutdown();
+        if (harness != null) harness.shutdown();
     }
 
     @Test

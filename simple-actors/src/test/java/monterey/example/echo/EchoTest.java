@@ -32,7 +32,7 @@ public class EchoTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDownHarness() {
-        harness.shutdown();
+        if (harness != null) harness.shutdown();
     }
 
     @Test

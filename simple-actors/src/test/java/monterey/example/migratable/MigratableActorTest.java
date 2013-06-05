@@ -25,7 +25,7 @@ public class MigratableActorTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDownHarness() {
-        harness.shutdown();
+        if (harness != null) harness.shutdown();
     }
 
     @Test

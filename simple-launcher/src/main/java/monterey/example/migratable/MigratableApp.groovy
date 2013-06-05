@@ -19,7 +19,7 @@ public class MigratableApp extends AbstractApplication {
                 initialNumVenuesPerLocation:1, initialNumBrokersPerLocation:1) {
             brokers(ActiveMQBroker.class, jmxPort:9999)
             bundles {
-                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT"
+                url "wrap:mvn:monterey-v4-examples/simple-actors/4.0.0-SNAPSHOT" // MONTEREY_VERSION
             }
             actors(defaultStrategy:"pojo") {
                 type "monterey.example.migratable.MigratableActor"
